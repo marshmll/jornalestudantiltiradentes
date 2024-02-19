@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.rozha {
+  font-family: "Rozha One", serif;
+}
