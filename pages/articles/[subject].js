@@ -44,7 +44,7 @@ export default function Articles() {
       let articles = [];
       response.allArticles.forEach((article) => {
         articles.push(
-          <article className="mb-4">
+          <article key={article.id} className="mb-4">
             <Link
               className="border-[1px] border-gray-400 rounded-lg bg-white h-[25rem] flex flex-row max-sm:flex-col max-sm:h-[38rem]"
               key={article.id}
@@ -79,7 +79,9 @@ export default function Articles() {
   return (
     <>
       <Menu title={subject} />
-      <main className="py-4 px-32 bg-gray-200 max-md:px-10">{renderArticlesListing()}</main>
+      <main className="py-4 px-32 bg-gray-200 max-md:px-10">
+        {renderArticlesListing()}
+      </main>
     </>
   );
 }

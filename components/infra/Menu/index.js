@@ -75,6 +75,7 @@ export default function Menu({ title }) {
         </h2>
         <Link href="/">
           <Image
+            title="Logotipo Jornal Estudantil Tiradentes"
             height={25}
             width={40}
             src="/favicon.ico"
