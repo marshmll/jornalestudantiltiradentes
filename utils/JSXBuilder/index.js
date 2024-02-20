@@ -42,10 +42,15 @@ const JSXBuilders = {
 
   ImageRecord: (element) => (
     <div key={element.id} className="relative mb-4">
-      <img src={element.source.url} title={element.alt} alt={element.alt} />
+      <img
+        className="w-full h-auto"
+        src={element.source.url}
+        title={element.alt}
+        alt={element.alt}
+      />
       <div
         style={{ backgroundColor: "#00000055" }}
-        className="block absolute bottom-0 p-2 text-white drop-shadow-lg"
+        className="block absolute bottom-0 p-2 text-white drop-shadow-lg w-full"
       >
         {element.span}
       </div>
@@ -54,14 +59,14 @@ const JSXBuilders = {
 
   BlockquoteRecord: (element) => (
     <blockquote
+      className="mb-4"
       key={element.id}
       style={{
         paddingLeft: "2rem",
-        margin: "3rem 5rem",
-        borderLeft: "3px solid rgb(153, 27, 27)",
+        borderLeft: "2px solid rgb(153, 27, 27)",
       }}
     >
-      <p className="text-lg mb-2">"{element.text}"</p>
+      <p className="text-lg my-4">"{element.text}"</p>
       <footer>
         <cite>— {element.author}</cite>
       </footer>

@@ -79,12 +79,12 @@ export default function Article() {
   return (
     <>
       <Menu title={response ? response.allArticles[0].subject : false} />
-      <article className="px-36">
+      <article className="px-36 max-md:px-20 max-sm:px-12">
         <div className="border-gray-600 border-y py-6 mt-8 mb-8">
-          <h1 className="text-5xl font-bold block w-full mb-4">
+          <h1 className="text-5xl font-bold block w-full mb-4 max-md:text-4xl">
             {response ? response.allArticles[0].title : ""}
           </h1>
-          <p className="text-2xl leading-6 mb-2">
+          <p className="text-2xl leading-6 mb-2 max-md:text-[1.2rem]">
             {response ? response.allArticles[0].description : ""}
           </p>
           <span className="font-bold block mb-1">

@@ -37,29 +37,29 @@ export default function Body() {
 
       response.allArticles.forEach((article) => {
         articles.push(
-          <article key={article.id} className="block w-full p-4">
+          <article key={article.id} className="block w-full h-full p-4 hover:scale-[1.01]">
             <Link
               href={`/article/${article.id}`}
-              className="block w-full h-[23rem] border-[1px] border-gray-400 rounded-lg bg-white flex flex-row items-start"
+              className="block w-full h-[23rem] border-[1px] border-gray-400 rounded-lg bg-white flex flex-row items-start max-sm:block max-sm:h-full"
             >
               <div
                 style={{ backgroundImage: `url(${article.thumbnail.url})` }}
-                className="block border-2 h-full w-[60%] bg-center bg-no-repeat bg-cover"
+                className="block border-2 h-full w-[60%] bg-center bg-no-repeat bg-cover max-sm:w-full max-sm:h-60"
               ></div>
-              <div className="block h-full w-[40%] relative">
+              <div className="block h-full w-[40%] relative max-sm:w-full max-sm:h-[18rem]">
                 <span className="absolute top-0 m-2 font-bold">
                   {article.subject}
                 </span>
-                <h3 className="absolute top-10 text-[20px] text-red-800 m-2 font-bold">
+                <h3 className="absolute top-10 max-h-50 overflow-y-hidden text-[20px] text-red-800 m-2 font-bold max-md:max-h-44 max-sm:max-h-24">
                   {article.title}
                 </h3>
-                <p className="absolute bottom-10 m-2 text-[15px]">
+                <p className="absolute max-h-30 overflow-y-hidden text-ellipsis bottom-14 m-2 text-[15px] max-md:text-[13px] max-md:bottom-20 max-md:max-h-20 max-sm:bottom-12">
                   {article.description}
                 </p>
-                <span className="absolute bottom-5 right-0 m-2 text-[13px]">
+                <span className="absolute bottom-5 right-0 m-2 text-[11px]">
                   {article.authors}
                 </span>
-                <span className="absolute bottom-0 right-0 m-2 text-[13px]">
+                <span className="absolute bottom-0 right-0 m-2 text-[11px]">
                   Atualizado em {DateFormatter.format(article._updatedAt)}
                 </span>
               </div>
@@ -72,9 +72,9 @@ export default function Body() {
   }
 
   return (
-    <section className="bg-gray-100 flex flex-row items-start">
-      <div className="inline-block w-[65%]">{renderArticles()}</div>
-      <aside className="inline-block w-4/12 p-4">
+    <section className="bg-gray-100 flex flex-row items-start max-md:flex-col-reverse">
+      <div className="inline-block w-[65%] max-md:w-full">{renderArticles()}</div>
+      <aside className="inline-block w-4/12 p-4 max-md:w-full">
         <div className="border-[1px] border-gray-400 rounded-lg"></div>
       </aside>
     </section>
