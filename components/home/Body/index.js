@@ -1,5 +1,6 @@
 import Link from "next/link";
 import client from "@/utils/DatoCMSClient";
+import openWeatherClient from "@/utils/OpenWeatherClient";
 import DateFormatter from "@/utils/DateFormatter";
 import { useEffect, useState } from "react";
 
@@ -29,6 +30,10 @@ export default function Body() {
       setResponse(res);
       setDone(true);
     });
+
+    openWeatherClient.getCurrentWeatherData().then((res) => {
+      console.log(res);
+    });
   }, [done]);
 
   function renderArticles() {
@@ -37,7 +42,10 @@ export default function Body() {
 
       response.allArticles.forEach((article) => {
         articles.push(
-          <article key={article.id} className="block w-full h-full p-4 hover:scale-[1.01]">
+          <article
+            key={article.id}
+            className="block w-full h-full p-4 hover:scale-[1.01]"
+          >
             <Link
               href={`/article/${article.id}`}
               className="block w-full h-[23rem] border-[1px] border-gray-400 rounded-lg bg-white flex flex-row items-start max-sm:block max-sm:h-full"
@@ -71,11 +79,23 @@ export default function Body() {
     }
   }
 
+  function renderWeatherData() {
+    return (
+      <div className="border-[1px] border-gray-400 rounded-lg">
+        <h2>Curitiba</h2>
+        <p>Nublado</p>
+        <p>23ºC</p>
+      </div>
+    );
+  }
+
   return (
     <section className="bg-gray-100 flex flex-row items-start max-md:flex-col-reverse">
-      <div className="inline-block w-[65%] max-md:w-full">{renderArticles()}</div>
+      <div className="inline-block w-[65%] max-md:w-full">
+        {renderArticles()}
+      </div>
       <aside className="inline-block w-4/12 p-4 max-md:w-full">
-        <div className="border-[1px] border-gray-400 rounded-lg"></div>
+        {renderWeatherData()}
       </aside>
     </section>
   );

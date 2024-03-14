@@ -17,7 +17,7 @@ export default function Article() {
     {
       allArticles(
         filter: {
-          id: { eq: ${articleId} }
+          id: { eq: "${articleId}" }
         }
       )
       {
