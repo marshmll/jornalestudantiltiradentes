@@ -65,7 +65,7 @@ export default function Headline() {
         <h2 className="text-red-800 font-bold text-3xl absolute top-10 m-4 pr-4 max-sm:text-[1.6rem]">
           {response ? response.heading.principal.title : ""}
         </h2>
-        <p className="absolute bottom-32 m-4 pr-4 text-lg">
+        <p className="absolute bottom-24 m-4 pr-4 text-lg">
           {response ? response.heading.principal.description : ""}
         </p>
         <span className="absolute bottom-0 right-0 m-4 max-sm:text-[.8rem]">

@@ -34,7 +34,6 @@ export default function Menu({ title }) {
         }
       });
 
-      console.log(subjects);
       subjects.forEach((subject) => {
         liJSXNodes.push(
           <li key={subject} className="mb-2 text-lg hover:underline">

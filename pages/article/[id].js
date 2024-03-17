@@ -71,7 +71,7 @@ export default function Article() {
   useEffect(() => {
     client.queryCMS(query).then((res) => {
       setResponse(res);
-      console.log(response);
+//      console.log(response);
       setDone(true);
     });
   }, [done]);

@@ -14,9 +14,6 @@ function createOpenWeatherClient() {
     };
 
     const coords = await getCoords();
-
-    console.log(coords);
-
     if (!coords) return;
 
     try {
@@ -26,13 +23,14 @@ function createOpenWeatherClient() {
 
       if (!response.ok) {
         throw new Error(
-          `Erro ao fazer a requisição ao servidor: ${response.statusText}`
+          `Erro ao fazer a requisição ao servidor: ${response.status}`
         );
       }
 
       const data = await response.json();
       console.log(data);
       return data;
+
     } catch (error) {
       throw new Error(`Erro ao processar requisição: ${error}`);
     }

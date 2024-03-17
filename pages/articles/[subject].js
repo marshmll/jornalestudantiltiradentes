@@ -34,7 +34,7 @@ export default function Articles() {
   useEffect(() => {
     client.queryCMS(query).then((res) => {
       setResponse(res);
-      console.log(res);
+//      console.log(res);
       setDone(true);
     });
   }, [done]);
@@ -61,7 +61,7 @@ export default function Articles() {
                 <h2 className="font-bold text-[1.6rem] text-red-800 absolute top-[10%] m-4 max-sm:text-2xl">
                   {article.title}
                 </h2>
-                <p className="absolute top-[40%] m-4 max-sm:bottom-[25%]">
+                <p className="absolute bottom-[35%] m-4 max-sm:bottom-[18%]">
                   {article.description}
                 </p>
                 <span className="absolute bottom-0 right-0 m-4">

@@ -82,9 +82,6 @@ export default function Body() {
   function renderWeatherData() {
     return (
       <div className="border-[1px] border-gray-400 rounded-lg">
-        <h2>Curitiba</h2>
-        <p>Nublado</p>
-        <p>23ºC</p>
       </div>
     );
   }
