@@ -5,8 +5,11 @@ import DateFormatter from "@/utils/DateFormatter";
 import { useEffect, useState } from "react";
 
 export default function Body() {
-  const [response, setResponse] = useState(null);
-  const [done, setDone] = useState(false);
+  const [CMSData, setCMSData] = useState(null);
+  const [hasLoadedCMSData, setHasLoadedCMSData] = useState(false);
+
+  const [weatherData, setWeatherData] = useState(null);
+  const [hasLoadedWeatherData, setHasLoadedWeatherData] = useState(false);
 
   const query = `
   {
@@ -27,20 +30,22 @@ export default function Body() {
 
   useEffect(() => {
     client.queryCMS(query).then((res) => {
-      setResponse(res);
-      setDone(true);
+      setCMSData(res);
+      setHasLoadedCMSData(true);
     });
 
-    openWeatherClient.getCurrentWeatherData().then((res) => {
-      console.log(res);
+    openWeatherClient.getCurrentWeatherData().then((data) => {
+      console.log(data);
+      setWeatherData(data);
+      setHasLoadedWeatherData(true);
     });
-  }, [done]);
+  }, [hasLoadedCMSData, hasLoadedWeatherData]);
 
   function renderArticles() {
-    if (response) {
+    if (CMSData) {
       let articles = [];
 
-      response.allArticles.forEach((article) => {
+      CMSData.allArticles.forEach((article) => {
         articles.push(
           <article
             key={article.id}
@@ -80,10 +85,48 @@ export default function Body() {
   }
 
   function renderWeatherData() {
-    return (
-      <div className="border-[1px] border-gray-400 rounded-lg">
-      </div>
-    );
+    if (weatherData)
+      return (
+        <div className="border-[1px] border-gray-400 rounded-lg bg-white p-4">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-3xl font-bold">{weatherData.name}</h3>
+            <div className="flex items-center flex-col">
+              <div
+                className="bg-center bg-no-repeat bg-cover"
+                style={{
+                  backgroundImage: `url("https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png")`,
+                  width: "5rem",
+                  height: "5rem",
+                }}
+              ></div>
+              <p className="mb-2 italic">
+                {weatherData.weather[0].description.charAt(0).toUpperCase() +
+                  weatherData.weather[0].description.slice(1)}
+              </p>
+            </div>
+            <p className="font-bold text-2xl">
+              {Math.round(weatherData.main.temp)}ºC
+            </p>
+          </div>
+          <div>
+            <p className="mb-1">
+              <b>Sensação térmica</b> {weatherData.main.feels_like}ºC
+            </p>
+            <p className="mb-1">
+              <b>Máxima</b> {weatherData.main.temp_max}ºC
+            </p>
+            <p className="mb-1">
+              <b>Mínima</b> {weatherData.main.temp_min}ºC
+            </p>
+            <p className="mb-1">
+              <b>Pressão</b> {weatherData.main.pressure} hPa
+            </p>
+            <p className="mb-1">
+              <b>Vento</b> {weatherData.wind.speed} km/h
+            </p>
+          </div>
+        </div>
+      );
   }
 
   return (
