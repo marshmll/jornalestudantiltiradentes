@@ -26,7 +26,7 @@ export default function Horoscope() {
   useEffect(() => {
     client.queryCMS(query).then((res) => {
       setResponse(res);
-      console.log(res);
+      // console.log(res);
       setDone(true);
     });
   }, [done]);
@@ -63,7 +63,9 @@ export default function Horoscope() {
       <Menu title="Horóscopo" />
       <section className="mx-20 my-10 max-sm:mx-10">
         <h1 className="rozha w-full text-center text-3xl mb-10">
-          {response ? `Horóscopo para o mês de ${response.horoscope.month}` : ""}
+          {response
+            ? `Horóscopo para o mês de ${response.horoscope.month}`
+            : ""}
         </h1>
         {renderPrevisions()}
       </section>
