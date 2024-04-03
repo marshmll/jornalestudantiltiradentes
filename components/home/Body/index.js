@@ -57,7 +57,7 @@ export default function Body() {
             >
               <div
                 style={{ backgroundImage: `url(${article.thumbnail.url})` }}
-                className="block border-2 h-full w-[60%] bg-center bg-no-repeat bg-cover max-sm:w-full max-sm:h-60"
+                className="block h-full w-[60%] bg-center bg-no-repeat bg-cover rounded-lg max-sm:w-full max-sm:h-60"
               ></div>
               <div className="block h-full w-[40%] relative max-sm:w-full max-sm:h-[18rem]">
                 <span className="absolute top-0 m-2 font-bold">

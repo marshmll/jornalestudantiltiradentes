@@ -27,6 +27,12 @@ export default function Menu({ title }) {
     if (response) {
       let liJSXNodes = [];
 
+      liJSXNodes.push(
+        <li key="horoscope" className="mb-2 text-lg hover:underline">
+          <Link href="/horoscope">Horóscopo</Link>
+        </li>
+      );
+
       let subjects = [];
       response.allArticles.forEach((article) => {
         if (!subjects.includes(article.subject)) {
@@ -84,7 +90,7 @@ export default function Menu({ title }) {
       </header>
       <nav
         className={`absolute h-full z-50 w-52 bg-red-700 top-0 transition-all p-2 ${
-          visibility ? "translate-x-0" : "-translate-x-full"
+          visibility ? "translate-x-0 fixed left-0" : "-translate-x-full"
         }`}
       >
         <button

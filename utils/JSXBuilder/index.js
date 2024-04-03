@@ -41,20 +41,20 @@ const JSXBuilders = {
   ),
 
   ImageRecord: (element) => (
-    <div key={element.id} className="relative mb-4">
+    <figure key={element.id} className="relative mb-4">
       <img
         className="w-full h-auto"
         src={element.source.url}
         title={element.alt}
         alt={element.alt}
       />
-      <div
+      <figcaption
         style={{ backgroundColor: "#00000055" }}
         className="block absolute bottom-0 p-2 text-white drop-shadow-lg w-full"
       >
         {element.span}
-      </div>
-    </div>
+      </figcaption>
+    </figure>
   ),
 
   BlockquoteRecord: (element) => (
@@ -73,7 +73,18 @@ const JSXBuilders = {
     </blockquote>
   ),
 
-  VideoRecord: (element) => <h1>VideoRecord</h1>,
+  VideoRecord: (element) => (
+    <iframe
+      style={{height: "80vh", marginBottom: "1rem"}}
+      width="100%"
+      src={`https://www.youtube.com/embed/${element.source.url.split("=")[1]}`}
+      title={element.title}
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+  ),
 };
 
 const JSXBuilder = createJSXBuilder();
