@@ -37,8 +37,6 @@ export default function Articles() {
       setResponse(res);
 //      console.log(res);
       setDone(true);
-
-      if (response.allArticles.length == 0) router.push("/404");
     });
   }, [done]);
 
