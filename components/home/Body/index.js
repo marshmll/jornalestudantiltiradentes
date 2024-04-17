@@ -1,7 +1,8 @@
-import Link from "next/link";
 import client from "@/utils/DatoCMSClient";
 import openWeatherClient from "@/utils/OpenWeatherClient";
 import DateFormatter from "@/utils/DateFormatter";
+import Link from "next/link";
+import Spinner from "@/components/spinner";
 import { useEffect, useState } from "react";
 
 export default function Body() {
@@ -35,7 +36,7 @@ export default function Body() {
     });
 
     openWeatherClient.getCurrentWeatherData().then((data) => {
-      console.log(data);
+      // console.log(data);
       setWeatherData(data);
       setHasLoadedWeatherData(true);
     });
@@ -81,6 +82,8 @@ export default function Body() {
         );
       });
       return articles;
+    } else {
+      return <Spinner />;
     }
   }
 

@@ -1,7 +1,8 @@
-import Menu from "@/components/infra/Menu";
 import client from "@/utils/DatoCMSClient";
 import DateFormatter from "@/utils/DateFormatter";
 import JSXBuilder from "@/utils/JSXBuilder";
+import Menu from "@/components/infra/Menu";
+import Spinner from "@/components/spinner";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -71,8 +72,10 @@ export default function Article() {
   useEffect(() => {
     client.queryCMS(query).then((res) => {
       setResponse(res);
-//      console.log(response);
+      // console.log(response);
       setDone(true);
+
+      if (response === undefined) router.push("/404");
     });
   }, [done]);
 
@@ -109,9 +112,11 @@ export default function Article() {
           </span>
         </div>
         <main>
-          {response
-            ? JSXBuilder.buildFromRecordContent(response.allArticles[0].content)
-            : ""}
+          {response ? (
+            JSXBuilder.buildFromRecordContent(response.allArticles[0].content)
+          ) : (
+            <Spinner />
+          )}
         </main>
       </article>
     </>

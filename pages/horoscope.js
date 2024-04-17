@@ -1,4 +1,5 @@
 import Menu from "@/components/infra/Menu";
+import Spinner from "@/components/spinner";
 import client from "@/utils/DatoCMSClient";
 import { useState, useEffect } from "react";
 
@@ -55,6 +56,9 @@ export default function Horoscope() {
       });
 
       return previsions;
+    }
+    else {
+      return <Spinner />
     }
   }
 

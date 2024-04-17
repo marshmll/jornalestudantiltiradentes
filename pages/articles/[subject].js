@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import client from "@/utils/DatoCMSClient";
 import Link from "next/link";
+import Spinner from "@/components/spinner";
 
 export default function Articles() {
   const router = useRouter();
@@ -36,6 +37,8 @@ export default function Articles() {
       setResponse(res);
 //      console.log(res);
       setDone(true);
+
+      if (response.allArticles.length == 0) router.push("/404");
     });
   }, [done]);
 
@@ -73,6 +76,9 @@ export default function Articles() {
         );
       });
       return articles;
+    }
+    else {
+      return <Spinner />
     }
   }
 
